@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -17,12 +18,12 @@ public class Film {
     private ObjectId id;
 
     @NotBlank
-    @Size(min = 10, max = 150, message = "title must be at least 10 characters long")
+    @Size(min = 10, max = 150, message = "The title must be between {min} and {max} characters long")
     @Indexed(unique = true)
     private String title;
 
     @NotBlank
-    @Size(min = 10, max = 500, message = "description must be at least 10 characters long")
+    @Size(min = 10, max = 5000, message = "The description must be between {min} and {max} characters long")
     private String description;
 
     private FilmMeta meta;
@@ -41,8 +42,8 @@ public class Film {
     @CreatedDate
     private Date createdDate;
 
-    public Film(@NotBlank @Size(min = 10, max = 150, message = "title must be at least 10 characters long") String title,
-                @NotBlank @Size(min = 10, max = 500, message = "description must be at least 10 characters long") String description
+    public Film(@NotBlank @Size(min = 10, max = 150, message =  "The title must be between {min} and {max} characters long") String title,
+                @NotBlank @Size(min = 10, max = 5000,  message = "The description must be between {min} and {max} characters long") String description
                ) {
         this.title = title;
         this.description = description;

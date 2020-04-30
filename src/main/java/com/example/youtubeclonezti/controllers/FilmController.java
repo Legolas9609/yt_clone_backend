@@ -196,8 +196,8 @@ public class FilmController {
     }
 
     @PostMapping
-    public ResponseEntity<Film> createFilm(@RequestParam @Valid @NotBlank(message = "Title must not be blank") @Size(min = 10, max = 150, message = "Title must be at least 10 characters long") String title,
-                                           @RequestParam @Valid @NotBlank(message = "Description must not be blank") @Size(min = 10, max = 500, message = "Description must be at least 10 characters long") String description,
+    public ResponseEntity<Film> createFilm(@RequestParam @Valid @NotBlank(message = "Title must not be blank") @Size(min = 10, max = 150, message = "The title must be between {min} and {max} characters long") String title,
+                                           @RequestParam @Valid @NotBlank(message = "Description must not be blank") @Size(min = 10, max = 5000,  message = "The description must be between {min} and {max} characters long") String description,
                                            @RequestParam(required = false) String url,
                                            @RequestParam @Valid @NotNull(message = "Thumbnail must not be null") MultipartFile thumbnail,
                                            @RequestParam(required = false) MultipartFile video) throws IOException {
